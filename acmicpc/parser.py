@@ -48,7 +48,7 @@ def parsing_tag(parent_tag):
       if item.name == 'p':
         for item2 in item.children:
           if type(item2) is bs4.element.NavigableString:
-            content += item2.strip() # by. 1001
+            content += item2.lstrip() # by. 1001
           elif type(item2) is bs4.element.Tag:
             if item2.name == 'code':
               content += '`' + item2.text + '`'
