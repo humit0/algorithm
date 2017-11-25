@@ -68,6 +68,8 @@ def parsing_tag(parent_tag):
         content += '> ' + item.text + '\n\n'
       elif item.name == 'table':
         content += '\n' + str(item) + '\n\n'
+      elif item.name == 'img':
+        content += '\n' + image(item, problem_title) + '\n\n'
       elif item.name == '':
         pass
       else:
@@ -79,8 +81,11 @@ def parsing_tag(parent_tag):
 parser = argparse.ArgumentParser(description='acmicpc problem parser')
 parser.add_argument('-n', '--no', type=int, metavar="problem_no", help='problem no', required=True)
 
+with open('cookie.txt', 'r') as f:
+  cookie = f.read()
+
 header = {"User-Agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36"}
-header["Cookie"] = ""
+header["Cookie"] = cookie
 
 args = parser.parse_args()
 problem_no = args.no
