@@ -56,6 +56,8 @@ def parsing_tag(parent_tag):
               content += image(item2, problem_title)
             elif item2.name == 'sup':
               content += '<sup>' + item2.text + '</sup>'
+            elif item2.name == 'br':
+              content += '<br />'
             else:
               print("UNKNOWN TAG...[in p tag :%s]" % item2.name)
         content += '\n\n'
