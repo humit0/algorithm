@@ -46,8 +46,8 @@ if(len(problem_no) != len(problem_name)):
 header = "번호 | 문제 이름 | 문제 내용 | 소스코드\n--- | --- | --- | ---\n".encode('utf-8')
 
 
-f = open("ProblemSet/ProblemSet%02d.md" % link_no, "wb")
-f.write(("# %d ~ %d\n\n" % (1000 * link_no, 1000 * (link_no + 1) - 1)).encode('utf-8'))
+f = open("ProblemSet/ProblemSet%03d.md" % link_no, "wb")
+f.write(("# %d ~ %d\n\n" % (1000 + 100 * (link_no - 1), 1000 + 100 * link_no - 1)).encode('utf-8'))
 f.write(header)
 for no, name in zip(problem_no, problem_name):
   f.write((get_row(no, name, check_solved(no)) + "\n").encode('utf-8'))
