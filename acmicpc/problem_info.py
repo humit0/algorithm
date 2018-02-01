@@ -9,7 +9,7 @@ BASE_URL = "https://www.acmicpc.net/problem/"
 
 def get_row(no, name, is_solved):
   if is_solved:
-    return "[%d](%s%d) | %s | [Link](%s%d/Problem.md) | [Link](%s%d/%d.md)" % (no, BASE_URL, no, name, PATH_DIR, no, PATH_DIR, no, no)
+    return "[%d](%s%d) | %s | [Link](%s%d/Problem.md) | [Link](%s%d/%d.cpp)" % (no, BASE_URL, no, name, PATH_DIR, no, PATH_DIR, no, no)
   else:
     return "[%d](%s%d) | %s | - | -" % (no, BASE_URL, no, name)
 
