@@ -33,10 +33,28 @@ def unordered_list(tag):
     if item.name == 'li':
       for item2 in item.children:
         if type(item2) is bs4.element.NavigableString:
-          result += '* ' + item.text
+          if item2.strip() != '':
+            result += '* ' + item2
         else:
           print("UNKNOWN ELEMENT [unordered_list]")
       result += '\n'
+  return result + '\n'
+
+def ordered_list(tag, level = 0):
+  result = ''
+  for item in tag:
+    if item.name == 'li':
+      for item2 in item.children:
+        if type(item2) is bs4.element.NavigableString:
+          if item2.strip() != '':
+            result += '\t' * level + '1. ' + item2
+        elif item2.name == 'ol':
+          result += ordered_list(item2, level + 1)
+        else:
+          print("UNKNOWN ELEMENT [ordered_list / %s]" % item.name)
+    elif item.name == 'ol':
+      result += ordered_list(item, level + 1)
+    result += '\n'
   return result + '\n'
 
 def parsing_tag(parent_tag):
@@ -66,6 +84,8 @@ def parsing_tag(parent_tag):
         content += code(item)
       elif item.name == 'ul': # ex. 1013
         content += unordered_list(item)
+      elif item.name == 'ol': # ex. 1094
+        content += ordered_list(item)
       elif item.name == 'blockquote':
         content += '> ' + item.text + '\n\n'
       elif item.name == 'table':
